@@ -10,10 +10,20 @@ from django.contrib.auth import logout
 def index_page(request):
     return render(request, 'index.html')
 
+def login(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    
+    return render(request, 'login.html')
+
+def exit(request):
+    return render(request, '')
+
 # auxiliar: retorna 2 listados -> uno de las imágenes de la API y otro de los favoritos del usuario.
 def getAllImagesAndFavouriteList(request):
-    images = []
-    favourite_list = []
+    images = services_nasa_image_gallery.getAllImages()
+    favourite_list = services_nasa_image_gallery.getAllFavouritesByUser(request)
 
     return images, favourite_list
 
@@ -23,17 +33,23 @@ def home(request):
     # (*) este último, solo si se desarrolló el opcional de favoritos; caso contrario, será un listado vacío [].
     images = []
     favourite_list = []
+    images, favourite_list = getAllImagesAndFavouriteList(request)
+
     return render(request, 'home.html', {'images': images, 'favourite_list': favourite_list} )
 
 
 # función utilizada en el buscador.
 def search(request):
-    images, favourite_list = getAllImagesAndFavouriteList(request)
+    
     search_msg = request.POST.get('query', '')
 
-    # si el usuario no ingresó texto alguno, debe refrescar la página; caso contrario, debe filtrar aquellas imágenes que posean el texto de búsqueda.
-    pass
-
+    if (search_msg == ''):
+        images, favourite_list = getAllImagesAndFavouriteList(request)
+        return render(request, 'home.html', {'images': images, 'favourite_list': favourite_list} )
+    else:
+        images = services_nasa_image_gallery.getAllImages(search_msg)
+        # si el usuario no ingresó texto alguno, debe refrescar la página; caso contrario, debe filtrar aquellas imágenes que posean el texto de búsqueda.
+        return render(request, 'home.html', {'images': images} )
 
 # las siguientes funciones se utilizan para implementar la sección de favoritos: traer los favoritos de un usuario, guardarlos, eliminarlos y desloguearse de la app.
 @login_required
