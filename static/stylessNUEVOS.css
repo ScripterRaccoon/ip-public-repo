@@ -1,0 +1,112 @@
+body{
+    background:linear-gradient( rgb(16, 16, 171),rgb(19, 19, 19));
+    color: white;
+    position: relative;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.bg-body-tertiary{
+    padding-top: 0;
+}
+/*Texto central de inicio*/
+.text-center{
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 0 0 10px white;
+    text-decoration: underline;
+    padding: 10px 20px;
+}
+.text-center::first-letter{
+    color: rgb(211, 207, 207);
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+}
+.text-center>a{
+    text-decoration:none;
+}
+.text-center>a:visited{
+    color: black;
+}
+.text-center>a:link{
+    color: blue;
+}
+
+
+/*Texto central de inicio*/
+.container-fluid{
+    background-color: black;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.navbar-brand{
+    color: rgb(255, 255, 255);
+}
+.navbar-brand:hover{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.nav-link{
+    color: rgb(255, 255, 255);
+}
+.nav-link:hover{
+    color: white;
+    font-weight: bold;
+}
+.nav-link:active{
+    background-color: white;
+    color: black;
+}
+/*Cuerpo de la card*/
+.card{
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 0 15px black;
+    box-sizing: border-box;
+}
+.card-title{
+    color: rgba(0, 0, 0, 255);
+    text-decoration: underline;
+
+}
+.card-title::first-letter{
+    color: red;
+    font-weight: bold;
+}
+.card-text{
+    color: white;
+
+}
+
+.final{
+    color: black;
+}
+.form-control{
+    background-color: black;
+    color: white;
+}
+.btn{
+    background-color: black;
+    color: white;
+}
+.btn-outline-success{
+    border: 1px solid white;
+}
+.btn-outline-success:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+/*Pie de la pagina*/
+footer{
+    position: sticky;
+    bottom: 0;
+}
+.p-3{
+    padding: 20px 0;
+}
+.final{
+    text-decoration: underline;
+    color: black;
+}
