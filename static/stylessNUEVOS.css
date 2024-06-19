@@ -103,7 +103,7 @@ body{
 div.form-group>button.ingresar{
     border: 1px solid white;
 }
-div.form-group>button.ingresae{
+div.form-group>button.ingresar:hover{
     background-color: white;
     color: black ;
     border: 1px solid black ;
