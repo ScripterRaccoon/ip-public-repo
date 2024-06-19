@@ -14,7 +14,7 @@ body{
     font-family: sans-serif;
     color: black;
     text-shadow: 0 0 10px white;
-    text-decoration: underline;
+    text-decoration: underline ;
     padding: 10px 20px;
 }
 .text-center::first-letter{
