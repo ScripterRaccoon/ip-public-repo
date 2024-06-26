@@ -120,3 +120,18 @@ footer{
     text-decoration: underline;
     color: black;
 }
+/*Barra de scroll*/
+body::-webkit-scrollbar{
+    width: 15px;
+    height: 10px;
+    background-color: black;
+}
+
+body::-webkit-scrollbar-corner{
+    width: 15px;
+    background: black;
+}
+body::-webkit-scrollbar-thumb{
+    background: rgb(1, 1, 44);
+    box-shadow: 0 0 5px white;
+}
