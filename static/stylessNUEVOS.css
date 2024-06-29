@@ -79,9 +79,6 @@ body{
 
 }
 
-.final{
-    color: black;
-}
 .form-control{
     background-color: black;
     color: white;
@@ -111,14 +108,15 @@ div.form-group>button.ingresar:hover{
 /*Pie de la pagina*/
 footer{
     position: sticky;
+    background-color: transparent;
     bottom: 0;
 }
 .p-3{
     padding: 20px 0;
 }
-.final{
+strong.text-final{
     text-decoration: underline;
-    color: black;
+    color: white;
 }
 /*Barra de scroll*/
 body::-webkit-scrollbar{
@@ -156,4 +154,61 @@ body::-webkit-scrollbar-thumb{
 
     animation-range: entry 25% cover 50%;
     animation-fill-mode: both;
+}
+/*Spinner*/
+.section_loader{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.loader{
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+.loader .loader_1{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid blue;
+    border-left-color: transparent;
+    border-bottom: none;
+    border-radius: 50%;
+    animation: loader-1 1s cubic-bezier(0.19, 1, 0.22, 1) infinite ;
+}
+.loader .loader_2{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid white;
+    border-top-color: transparent;
+    border-right: none;
+    border-radius: 50%;
+    left: calc(50% - 20px) ;
+    top: calc(50% - 20px) ;
+    animation: loader-2 1s cubic-bezier(0.19, 1, 0.22, 1) infinite ;
+}
+.show_loader{
+    display: flex;
+}
+@keyframes loader-1{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes loader-2{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-360deg);
+    }
 }
