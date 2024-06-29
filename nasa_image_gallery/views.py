@@ -40,18 +40,20 @@ def home(request):
 
 # función utilizada en el buscador.
 from googletrans import Translator
-translator = Translator()
-def search(request):
-    search_msg = request.POST.get('query', '')
+def Traducir(palabra):
+    translator = Translator()
+    X=palabra
+    X_traducido=translator.translate(X, src="es", dest='en')
+    return X_traducido.text
 
+def search(request):
+    search_msg = Traducir(request.POST.get('query', ''))  
+    # si el usuario no ingresó texto alguno, debe refrescar la página; caso contrario, debe filtrar aquellas imágenes que posean el texto de búsqueda.
     if (search_msg == ''):
         images, favourite_list = getAllImagesAndFavouriteList(request)
         return render(request, 'home.html', {'images': images, 'favourite_list': favourite_list} )
     else:
-        search_msg_traducido=translator.translate(search_msg, dest='en')
-        search_msg_nuevo=search_msg_traducido.text
-        images = services_nasa_image_gallery.getAllImages(search_msg_nuevo)
-        # si el usuario no ingresó texto alguno, debe refrescar la página; caso contrario, debe filtrar aquellas imágenes que posean el texto de búsqueda.
+        images = services_nasa_image_gallery.getAllImages(search_msg)
         return render(request, 'home.html', {'images': images} )
 
 # las siguientes funciones se utilizan para implementar la sección de favoritos: traer los favoritos de un usuario, guardarlos, eliminarlos y desloguearse de la app.
