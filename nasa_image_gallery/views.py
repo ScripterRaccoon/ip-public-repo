@@ -39,15 +39,18 @@ def home(request):
 
 
 # función utilizada en el buscador.
+from googletrans import Translator
+translator = Translator()
 def search(request):
-    
     search_msg = request.POST.get('query', '')
 
     if (search_msg == ''):
         images, favourite_list = getAllImagesAndFavouriteList(request)
         return render(request, 'home.html', {'images': images, 'favourite_list': favourite_list} )
     else:
-        images = services_nasa_image_gallery.getAllImages(search_msg)
+        search_msg_traducido=translator.translate(search_msg, dest='en')
+        search_msg_nuevo=search_msg_traducido.text
+        images = services_nasa_image_gallery.getAllImages(search_msg_nuevo)
         # si el usuario no ingresó texto alguno, debe refrescar la página; caso contrario, debe filtrar aquellas imágenes que posean el texto de búsqueda.
         return render(request, 'home.html', {'images': images} )
 
