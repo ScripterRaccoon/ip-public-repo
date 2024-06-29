@@ -130,7 +130,7 @@ body::-webkit-scrollbar-corner{
     background: black;
 }
 body::-webkit-scrollbar-thumb{
-    background: rgb(1, 1, 44);
+    background: rgb(255, 255, 255);
     box-shadow: 0 0 5px white;
 }
 /*Intento de animacion*/
