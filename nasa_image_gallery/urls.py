@@ -7,6 +7,7 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path('home/', views.home, name='home'),
     path('buscar/', views.search, name='buscar'),
+    path('register/', views.register, name='register'),
 
     path('favourites/', views.getAllFavouritesByUser, name='favoritos'),
     path('favourites/add/', views.saveFavourite, name='agregar-favorito'),

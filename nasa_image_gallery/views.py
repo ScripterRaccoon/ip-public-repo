@@ -1,10 +1,45 @@
 # capa de vista/presentación
 # si se necesita algún dato (lista, valor, etc), esta capa SIEMPRE se comunica con services_nasa_image_gallery.py
 
+from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from .layers.services import services_nasa_image_gallery
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
+from .forms import CustomUserCreationForm
+from django.conf import settings
+
+# funcion para el envio de mail (borrado por innecesario)
+
+# funcion para el register
+def register(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
+
+    if request.method == 'POST':
+        user_creation_form = CustomUserCreationForm(data=request.POST)
+
+        if user_creation_form.is_valid():
+            user_creation_form.save()
+
+            subject = 'El registro ha sido exitoso'
+            user_name = user_creation_form.cleaned_data.get('first_name'), user_creation_form.cleaned_data.get('last_name')
+            user_mail = user_creation_form.cleaned_data.get('email')
+            user_nickname =  user_creation_form.cleaned_data.get('username')
+            message = user_name, user, user_nickname
+            send_mail(subject, 
+                      message, settings.EMAIL_HOST_USER, [user_mail], fail_silently=False)
+
+            user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
+            login(request, user)
+            return redirect('home')
+        else:
+            data['form'] = user_creation_form
+
+    return render(request, 'registration/register.html', data)
+
 
 # función que invoca al template del índice de la aplicación.
 def index_page(request):
