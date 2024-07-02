@@ -25,30 +25,24 @@ def register(request):
             user_creation_form.save()
 
             subject = 'El registro ha sido exitoso'
-            #user_first_name = user_creation_form.cleaned_data.get('first_name')
-            #user_last_name = user_creation_form.cleaned_data.get('last_name')
-            user_name = user_creation_form.cleaned_data.get('first_name'), user_creation_form.cleaned_data.get('last_name')
+            user_first_name = user_creation_form.cleaned_data.get('first_name')
+            user_last_name = user_creation_form.cleaned_data.get('last_name')
             user_mail = user_creation_form.cleaned_data.get('email')
             user_nickname =  user_creation_form.cleaned_data.get('username')
-            message = ('Su cuenta a sido registrada con exito:', 
-            '\nNombre:', 
-            '\nNombre de usuario:', 
-            '\nContraseña:', 
-            '\nEmail:',)
-            #f"""
-            #Hola {user_first_name} {user_last_name},
-            #
-            #Tu registro en nuestra plataforma ha sido exitoso.
-            #
-            #Detalles de tu cuenta:
-            #- Nombre de usuario: {user_nickname}
-            #- Correo electrónico: {user_mail}
-            #
-            #Gracias por unirte a nosotros.
-            #
-            #Saludos,
-            #El equipo de [Tu Aplicación]
-            #"""
+            message = f"""
+            Hola {user_first_name} {user_last_name},
+            \n
+            \nTu registro en nuestra plataforma ha sido exitoso.
+            \n
+            \nDetalles de tu cuenta:
+            \n- Nombre de usuario: {user_nickname}
+            \n- Correo electrónico: {user_mail}
+            \n
+            \nGracias por unirte a nosotros.
+            \n
+            \nSaludos,
+            \nEl equipo de TP Proyect
+            """
             send_mail(subject, 
                       message, settings.EMAIL_HOST_USER, [user_mail], fail_silently=False)
 
